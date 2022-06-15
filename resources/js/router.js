@@ -1,7 +1,9 @@
 import {createRouter, createWebHistory} from "vue-router";
 import Index from './components/pages/Index';
-import Services from "./components/pages/Services";
+import Services from "./components/pages/Service";
 import Login from "./components/pages/Login";
+import Order from "./components/pages/Order";
+import Time from "./components/pages/Time";
 
 
 const routes = [
@@ -15,8 +17,10 @@ const routes = [
         name: 'services',
     },
     {
-        path: '/login',
-        component: Login,
+        path: '/barber/:id/date',
+        component: Time,
+        name: 'time',
+        props: true,
     }
 ]
 

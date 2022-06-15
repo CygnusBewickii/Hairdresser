@@ -1,6 +1,8 @@
 <template>
     <div v-for="barber in barbers" :key="barber.id" class="mt-4">
-        <BarberCard :barber="barber" :active-barber="activeId" @selectActive="selectActive(barber)"></BarberCard>
+        <BarberCard :barber="barber" :active-barber="activeId" @selectActive="selectActive(barber)"
+        @showInformation="showInformation"
+        />
     </div>
 </template>
 
@@ -12,11 +14,7 @@ export default {
     data() {
         return {
             barbers: [
-                { id: 1, name: 'Alex', description: 'Хуй с горы',
-                    image: 'storage/images/specialists/Billy.jpg',
-                    category: 'говноед, колорист, дантист, онанист, похуист, ебанист вввввв ыыыыыыыыыы'},
-                { id: 2, name: 'Chmo', description: 'Хуй с горы', image: 'storage/images/specialists/Billy.jpg',
-                    category: 'говноед, колорист, дантист, онанист, похуист, ебанист вввввв ыыыыыыыыыы'}
+
             ],
             activeId: 0,
         }
@@ -25,7 +23,15 @@ export default {
         selectActive(barber) {
             this.activeId = barber.id;
             this.$emit('selectActive', this.activeId);
+        },
+        showInformation(barber) {
+            this.$emit('showInformation', barber)
         }
+    },
+    mounted() {
+        axios.get('/api/barber/all')
+        .then(response => response.data)
+        .then(data => this.barbers = data);
     }
 }
 </script>

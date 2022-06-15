@@ -1,15 +1,15 @@
 <template>
     <div class="border border rounded-xl h-32 bg-white p-5" @click="chooseActive" :class="this.border">
-        <div class="flex justify-between">
-            <div class="rounded-full overflow-hidden  w-14 h-14">
-                <img :src="barber.image" alt="Здесь должно было быть изображение мастера" style="width: 60px; height: 60px">
+        <div class="flex">
+            <div class="rounded-full overflow-hidden  w-14 h-14 relative right-1 top-1">
+                <img :src="barber.picturePath" alt="Здесь должно было быть изображение мастера" style="width: 60px; height: 60px">
             </div>
-            <div class="opacity-50  text-sm ml-2 mr-2">
-                <p class="mb-2">{{barber.category}}</p>
+            <div class="opacity-50 align-self-left text-sm ml-4 mr-2 grow">
+                <p class="mb-2">{{barber.position}}</p>
                 <p class="text-lg font-bold">{{barber.name}}</p>
             </div>
-            <div class="">
-                инфо
+            <div class="mr-3 mt-4 relative right-1 top-1" style="height: 50px; width: 50px" @click.stop="showInformation">
+                <img :src="'/storage/images/logo/info.png'" style="height: 50px; width: 50px">
             </div>
         </div>
     </div>
@@ -30,6 +30,9 @@ export default {
     methods: {
         chooseActive() {
             this.$emit('selectActive', this.barber)
+        },
+        showInformation() {
+            this.$emit('showInformation', this.barber)
         }
     },
     watch: {

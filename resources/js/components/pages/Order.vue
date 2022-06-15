@@ -4,7 +4,10 @@
 
 <script>
 export default {
-    name: "Services"
+    name: "Order",
+    props: {
+        services: Array
+    }
 }
 </script>
 
